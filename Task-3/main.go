@@ -20,11 +20,11 @@ func main() {
 	person9 := Human{Name: "Fiqri", Age: 23, Gender: "Men"}
 	person10 := Human{Name: "Ricky", Age: 22, Gender: "Men"}
 
-	closure(&person1, &person2, &person3, &person4, &person5, &person6, &person7, &person8, &person9, &person10)
+	printHuman(&person1, &person2, &person3, &person4, &person5, &person6, &person7, &person8, &person9, &person10)
 
 }
 
-var closure = func(human ...*Human) {
+var printHuman = func(human ...*Human) {
 	for _, v := range human {
 		fmt.Printf("Name: %s, Age: %d, Gender: %s\n", v.Name, v.Age, v.Gender)
 	}
