@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"sync"
+)
 
 type Users struct {
 	Name string
@@ -28,11 +31,24 @@ func main() {
 			Name: "Clara Monica",
 			Age:  22,
 		},
+		{
+			Name: "Fahmi",
+			Age:  26,
+		},
+		{
+			Name: "Giva",
+			Age:  24,
+		},
 	}
+
+	var wait sync.WaitGroup
+	lenArr := len(users)
+	fmt.Println("panjang array", lenArr)
+	wait.Add(lenArr)
 	for _, v := range users {
-		resp := userIface.Register(v)
-		fmt.Println(resp)
+		go wrapper(&wait, userIface, v)
 	}
+	wait.Wait()
 
 	resUser := userIface.GetUsers()
 	fmt.Println("Get Users")
@@ -55,4 +71,10 @@ func (us *UserService) Register(u *Users) string {
 
 func (us *UserService) GetUsers() []*Users {
 	return us.Users
+}
+
+func wrapper(wg *sync.WaitGroup, service UserService, user *Users) {
+	res := service.Register(user)
+	fmt.Println(res)
+	wg.Done()
 }
