@@ -1,0 +1,39 @@
+basePath: /v1
+definitions:
+  models.Order:
+    properties:
+      createdAt:
+        type: string
+      customerName:
+        type: string
+      id:
+        type: integer
+      productsId:
+        type: integer
+      userId:
+        type: integer
+    type: object
+  views.GetOrderSuccess:
+    properties:
+      message:
+        example: GET_SUCCESS
+        type: string
+      payload:
+        items:
+          $ref: '#/definitions/models.Order'
+        type: array
+      status:
+        example: 200
+        type: integer
+    type: object
+host: localhost:4000
+info:
+  contact:
+    email: admin@hacktiv8.com
+    name: Hacktiv8
+  description: Ini adalah sample API Spec untuk Api orders
+  termsOfService: https://swagger.io/terms/
+  title: Orders API
+  version: "1.0"
+paths: {}
+swagger: "2.0"
