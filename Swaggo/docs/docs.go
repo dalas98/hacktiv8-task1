@@ -19,7 +19,37 @@ const docTemplate = `{
     },
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
-    "paths": {},
+    "paths": {
+        "/orders": {
+            "get": {
+                "description": "Get All orders in detail",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "order"
+                ],
+                "summary": "Get All Orders",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/views.GetOrderSuccess"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/views.GetOrderFailedNotFound"
+                        }
+                    }
+                }
+            }
+        }
+    },
     "definitions": {
         "models.Order": {
             "type": "object",
@@ -28,16 +58,33 @@ const docTemplate = `{
                     "type": "string"
                 },
                 "customerName": {
-                    "type": "string"
+                    "type": "string",
+                    "example": "MNC GOLANG LESSON"
                 },
                 "id": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 1
                 },
                 "productsId": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 1
                 },
                 "userId": {
-                    "type": "integer"
+                    "type": "integer",
+                    "example": 1
+                }
+            }
+        },
+        "views.GetOrderFailedNotFound": {
+            "type": "object",
+            "properties": {
+                "message": {
+                    "type": "string",
+                    "example": "GET_NOT_FOUND"
+                },
+                "status": {
+                    "type": "integer",
+                    "example": 404
                 }
             }
         },

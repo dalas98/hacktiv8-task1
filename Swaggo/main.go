@@ -6,7 +6,7 @@ import (
 
 	_ "dalas98/golang-lesson/Swaggo/docs"
 
-	httpSwagger "github.com/swaggo/swag"
+	httpSwagger "github.com/swaggo/http-swagger"
 
 	"github.com/gorilla/mux"
 )
@@ -24,6 +24,7 @@ func main() {
 
 	router.HandleFunc("/v1/orders", controller.GetOrders)
 
-	router.PathPrefix("swagger", httpSwagger.WrapHandler)
+	router.PathPrefix("/swagger").Handler(httpSwagger.WrapHandler)
+
 	http.ListenAndServe(":4000", router)
 }

@@ -5,12 +5,25 @@ definitions:
       createdAt:
         type: string
       customerName:
+        example: MNC GOLANG LESSON
         type: string
       id:
+        example: 1
         type: integer
       productsId:
+        example: 1
         type: integer
       userId:
+        example: 1
+        type: integer
+    type: object
+  views.GetOrderFailedNotFound:
+    properties:
+      message:
+        example: GET_NOT_FOUND
+        type: string
+      status:
+        example: 404
         type: integer
     type: object
   views.GetOrderSuccess:
@@ -35,5 +48,24 @@ info:
   termsOfService: https://swagger.io/terms/
   title: Orders API
   version: "1.0"
-paths: {}
+paths:
+  /orders:
+    get:
+      consumes:
+      - application/json
+      description: Get All orders in detail
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/views.GetOrderSuccess'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/views.GetOrderFailedNotFound'
+      summary: Get All Orders
+      tags:
+      - order
 swagger: "2.0"

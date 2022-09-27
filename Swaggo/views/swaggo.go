@@ -12,5 +12,5 @@ type GetOrderSuccess struct {
 
 type GetOrderFailedNotFound struct {
 	StatusCode int    `json:"status" example:"404"`
-	Message    string `json:"message" example:"GET_NOT_FOUND"`
+	Message    string `json:"message" example:"GET_ORDER_NOT_FOUND"`
 }
