@@ -17,10 +17,17 @@ definitions:
         example: 1
         type: integer
     type: object
+  params.CreateOrder:
+    properties:
+      customerName:
+        type: string
+      productId:
+        type: integer
+    type: object
   views.GetOrderFailedNotFound:
     properties:
       message:
-        example: GET_NOT_FOUND
+        example: GET_ORDER_NOT_FOUND
         type: string
       status:
         example: 404
@@ -67,5 +74,44 @@ paths:
             $ref: '#/definitions/views.GetOrderFailedNotFound'
       summary: Get All Orders
       tags:
-      - order
+      - orders
+  /orders/{id}:
+    post:
+      consumes:
+      - application/json
+      description: Create a new Order with input payload
+      parameters:
+      - description: Create order payload
+        in: body
+        name: order
+        required: true
+        schema:
+          $ref: '#/definitions/params.CreateOrder'
+      - description: path
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: token
+        in: header
+        name: Authorization
+        type: string
+      - description: X-Token
+        in: header
+        name: X-Token
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/views.GetOrderSuccess'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/views.GetOrderFailedNotFound'
+      summary: Create a new Order
+      tags:
+      - orders
 swagger: "2.0"

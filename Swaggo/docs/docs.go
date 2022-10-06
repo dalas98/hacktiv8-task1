@@ -30,9 +30,68 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "order"
+                    "orders"
                 ],
                 "summary": "Get All Orders",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/views.GetOrderSuccess"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/views.GetOrderFailedNotFound"
+                        }
+                    }
+                }
+            }
+        },
+        "/orders/{id}": {
+            "post": {
+                "description": "Create a new Order with input payload",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "orders"
+                ],
+                "summary": "Create a new Order",
+                "parameters": [
+                    {
+                        "description": "Create order payload",
+                        "name": "order",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/params.CreateOrder"
+                        }
+                    },
+                    {
+                        "type": "integer",
+                        "description": "path",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "token",
+                        "name": "Authorization",
+                        "in": "header"
+                    },
+                    {
+                        "type": "string",
+                        "description": "X-Token",
+                        "name": "X-Token",
+                        "in": "header"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -75,12 +134,23 @@ const docTemplate = `{
                 }
             }
         },
+        "params.CreateOrder": {
+            "type": "object",
+            "properties": {
+                "customerName": {
+                    "type": "string"
+                },
+                "productId": {
+                    "type": "integer"
+                }
+            }
+        },
         "views.GetOrderFailedNotFound": {
             "type": "object",
             "properties": {
                 "message": {
                     "type": "string",
-                    "example": "GET_NOT_FOUND"
+                    "example": "GET_ORDER_NOT_FOUND"
                 },
                 "status": {
                     "type": "integer",
