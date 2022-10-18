@@ -18,14 +18,223 @@ const docTemplate = `{
     },
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
-    "paths": {}
+    "paths": {
+        "/todos": {
+            "get": {
+                "description": "Get all todo",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Todo List"
+                ],
+                "summary": "Get all Todo",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/transformer.GetTodoSuccess"
+                        }
+                    },
+                    "502": {
+                        "description": "Bad Gateway",
+                        "schema": {
+                            "$ref": "#/definitions/transformer.GetTodoFailed"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "description": "Create Todo List",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Todo List"
+                ],
+                "summary": "Create Todo List",
+                "parameters": [
+                    {
+                        "description": "Create todo payload",
+                        "name": "todo",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.TodoRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/transformer.GetTodoSuccess"
+                        }
+                    },
+                    "502": {
+                        "description": "Bad Gateway",
+                        "schema": {
+                            "$ref": "#/definitions/transformer.GetTodoFailed"
+                        }
+                    }
+                }
+            }
+        },
+        "/todos/{id}": {
+            "put": {
+                "description": "Update Todo List",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Todo List"
+                ],
+                "summary": "Update Todo List",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "id todo",
+                        "name": "id",
+                        "in": "path"
+                    },
+                    {
+                        "description": "Update todo payload",
+                        "name": "todo",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.TodoRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/transformer.GetTodoSuccess"
+                        }
+                    },
+                    "502": {
+                        "description": "Bad Gateway",
+                        "schema": {
+                            "$ref": "#/definitions/transformer.GetTodoFailed"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "description": "Delete Todo List",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Todo List"
+                ],
+                "summary": "Delete Todo List",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "description": "id todo",
+                        "name": "id",
+                        "in": "path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/transformer.GetTodoSuccess"
+                        }
+                    },
+                    "502": {
+                        "description": "Bad Gateway",
+                        "schema": {
+                            "$ref": "#/definitions/transformer.GetTodoFailed"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "model.Todo": {
+            "type": "object",
+            "properties": {
+                "createdAt": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer"
+                },
+                "status": {
+                    "type": "string"
+                },
+                "task": {
+                    "type": "string"
+                },
+                "updatedAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "request.TodoRequest": {
+            "type": "object",
+            "properties": {
+                "status": {
+                    "type": "string"
+                },
+                "task": {
+                    "type": "string"
+                }
+            }
+        },
+        "transformer.GetTodoFailed": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "string"
+                },
+                "message": {
+                    "type": "string",
+                    "example": "failed"
+                }
+            }
+        },
+        "transformer.GetTodoSuccess": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/model.Todo"
+                    }
+                },
+                "message": {
+                    "type": "string",
+                    "example": "success"
+                }
+            }
+        }
+    }
 }`
 
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
 	Version:          "1.0",
-	Host:             "localhost:4000",
-	BasePath:         "/",
+	Host:             "localhost:9000",
+	BasePath:         "/todos",
 	Schemes:          []string{},
 	Title:            "",
 	Description:      "ini adalah sample api spec untuk To Do List API",

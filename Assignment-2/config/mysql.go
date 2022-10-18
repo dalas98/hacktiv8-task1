@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"time"
 
-	_ "gorm.io/driver/mysql"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 const (
