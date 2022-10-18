@@ -1,0 +1,14 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "ini adalah sample api spec untuk To Do List API",
+        "contact": {
+            "name": "Yusuf Farhan Hasbullah",
+            "email": "yusuf.hasbullah@misteraladin.com"
+        },
+        "version": "1.0"
+    },
+    "host": "localhost:4000",
+    "basePath": "/",
+    "paths": {}
+}

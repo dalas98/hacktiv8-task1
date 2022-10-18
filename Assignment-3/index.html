@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content="15">
+    <title>Wheater Ala Alaa</title>
+</head>
+<body>
+    <table id="wheater">
+        <tr>
+            <td>Kategori</td>
+            <td>Suhu</td>
+            <td>Status</td>
+        </tr>
+    </table>
+</body>
+<script>
+    fetch('http://localhost:9000/load')
+    .then((response) => response.json())
+    .then((json) => {
+        let waterStatus = json.Status.Water
+        let windStatus = json.Status.Wind
+        if (waterStatus<5){
+            waterStatus = "aman"
+        }else if(waterStatus>=6 && waterStatus<=8) {
+            waterStatus = "siaga"
+        }else{
+            waterStatus = "bahaya"
+        }
+
+        if (windStatus<6){
+            windStatus = "aman"
+        }else if(windStatus>=7 && windStatus<=15) {
+            windStatus = "siaga"
+        }else{
+            windStatus = "bahaya"
+        }
+        document.getElementById("wheater").innerHTML += "<tr>\
+            <td> Water </td>\
+            <td>"+ json.Status.Water +"m</td>\
+            <td>"+ waterStatus +"</td>\
+        </tr>\
+        <tr>\
+            <td> Water </td>\
+            <td>"+ json.Status.Wind +"m/s</td>\
+            <td>"+ windStatus +"</td>\
+        </tr>"
+    });
+</script>
+</html>
