@@ -178,7 +178,7 @@
                 }
             }
         },
-        "/comments/:commentID": {
+        "/comments/{commentID}": {
             "put": {
                 "description": "Update a comment",
                 "consumes": [
@@ -535,7 +535,7 @@
                 }
             }
         },
-        "/photos/:photoID": {
+        "/photos/{photoID}": {
             "put": {
                 "description": "Update a photo",
                 "consumes": [
@@ -817,7 +817,7 @@
                 }
             }
         },
-        "/socialmedias/:socialmediaid": {
+        "/socialmedias/{socialmediaid}": {
             "put": {
                 "description": "Update by id social media",
                 "consumes": [

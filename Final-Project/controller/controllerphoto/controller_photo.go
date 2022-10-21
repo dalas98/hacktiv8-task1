@@ -37,7 +37,7 @@ func New(srv servicephoto.ServicePhoto) ControllerPhoto {
 // @Success 200 {object} helper.BaseResponse "SUCCESS"
 // @Failure 400 {object} helper.BaseResponse{errors=helper.ExampleErrorResponse} "Bad Request"
 // @Failure 401 {object} helper.BaseResponse{errors=helper.ExampleErrorResponse} "Unauthorization"
-// @Router /photos/:photoID [DELETE]
+// @Router /photos/{photoID} [DELETE]
 func (c *controller) Delete(ctx *gin.Context) {
 	paramKeyID := ctx.Param("photoID")
 	photoID, _ := strconv.Atoi(paramKeyID)
@@ -62,7 +62,7 @@ func (c *controller) Delete(ctx *gin.Context) {
 // @Success 200 {object} helper.BaseResponse{data=modelphoto.ResponseUpdate} "SUCCESS"
 // @Failure 400 {object} helper.BaseResponse{errors=helper.ExampleErrorResponse} "Bad Request"
 // @Failure 401 {object} helper.BaseResponse{errors=helper.ExampleErrorResponse} "Unauthorization"
-// @Router /photos/:photoID [PUT]
+// @Router /photos/{photoID} [PUT]
 func (c *controller) Update(ctx *gin.Context) {
 	data := new(modelphoto.Request)
 

@@ -186,7 +186,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/comments/:commentID": {
+        "/comments/{commentID}": {
             "put": {
                 "description": "Update a comment",
                 "consumes": [
@@ -543,7 +543,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/photos/:photoID": {
+        "/photos/{photoID}": {
             "put": {
                 "description": "Update a photo",
                 "consumes": [
@@ -825,7 +825,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/socialmedias/:socialmediaid": {
+        "/socialmedias/{socialmediaid}": {
             "put": {
                 "description": "Update by id social media",
                 "consumes": [

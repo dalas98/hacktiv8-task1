@@ -87,7 +87,7 @@ func (c *controller) Get(ctx *gin.Context) {
 // @Success 200 {object} helper.BaseResponse{data=modelcomment.ResponseUpdate} "OK"
 // @Failure 400 {object} helper.BaseResponse{errors=helper.ExampleErrorResponse} "Bad Request"
 // @Failure 401 {object} helper.BaseResponse{errors=helper.ExampleErrorResponse} "Unauthorization"
-// @Router /comments/:commentID [PUT]
+// @Router /comments/{commentID} [PUT]
 func (c *controller) Update(ctx *gin.Context) {
 	paramKeyID := ctx.Param("commentID")
 	commentID, err := strconv.Atoi(paramKeyID)
@@ -126,7 +126,7 @@ func (c *controller) Update(ctx *gin.Context) {
 // @Success 200 {object} helper.BaseResponse "OK"
 // @Failure 400 {object} helper.BaseResponse{errors=helper.ExampleErrorResponse} "Bad Request"
 // @Failure 401 {object} helper.BaseResponse{errors=helper.ExampleErrorResponse} "Unauthorization"
-// @Router /comments/:commentID [DELETE]
+// @Router /comments/{commentID} [DELETE]
 func (c *controller) Delete(ctx *gin.Context) {
 	paramKeyID := ctx.Param("commentID")
 	commentID, err := strconv.Atoi(paramKeyID)

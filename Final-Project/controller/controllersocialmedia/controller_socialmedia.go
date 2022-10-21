@@ -88,7 +88,7 @@ func (c *controller) GetList(ctx *gin.Context) {
 // @Success 200 {object} helper.BaseResponse{data=modelsocialmedia.Response} "SUCCESS"
 // @Failure 400 {object} helper.BaseResponse{errors=helper.ExampleErrorResponse} "Bad Request"
 // @Failure 404 {object} helper.BaseResponse{errors=helper.ExampleErrorResponse} "Record not found"
-// @Router /socialmedias/:socialmediaid [PUT]
+// @Router /socialmedias/{socialmediaid} [PUT]
 func (c *controller) UpdateByID(ctx *gin.Context) {
 	data := new(modelsocialmedia.Request)
 
@@ -125,7 +125,7 @@ func (c *controller) UpdateByID(ctx *gin.Context) {
 // @Success 200 {object} helper.BaseResponse{data=modelsocialmedia.Response} "SUCCESS"
 // @Failure 400 {object} helper.BaseResponse{errors=helper.ExampleErrorResponse} "Bad Request"
 // @Failure 404 {object} helper.BaseResponse{errors=helper.ExampleErrorResponse} "Record not found"
-// @Router /socialmedias/:socialmediaid [DELETE]
+// @Router /socialmedias/{socialmediaid} [DELETE]
 func (c *controller) DeleteByID(ctx *gin.Context) {
 	idString := ctx.Param("socialmediaid")
 	id, err := strconv.Atoi(idString)
